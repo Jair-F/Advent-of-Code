@@ -3,19 +3,25 @@
 #include <string>
 
 struct position {
-    unsigned int horizontal = 0, vertical = 0;
+    unsigned int horizontal = 0;
+    unsigned int vertical = 0;      // depth
+};
+
+struct trackers {
+    position pos;
+    unsigned short aim = 0;
 };
 
 int main() {
     std::string line;
-    std::fstream input("part1 - input.txt", std::ios::in);
+    std::fstream input("part2 - input.txt", std::ios::in);
 
     if(!input.good()) {
         std::cerr << "Error while reding the input file!!\n";
         return -1;
     }
 
-    position pos;
+    trackers trcks;     // the values we have to keep tracking bundeld togehter
 
     while(std::getline(input, line)) {
         std::string command, parameter;
@@ -34,20 +40,21 @@ int main() {
         }
 
         if(command == "forward") {
-            pos.horizontal += parameter_int;
+            trcks.pos.horizontal += parameter_int;
+            trcks.pos.vertical = trcks.pos.vertical + trcks.aim * parameter_int;
         }
         else if(command == "up") {
-            pos.vertical -= parameter_int;
+            trcks.aim -= parameter_int;
         }
         else if(command == "down") {
-            pos.vertical += parameter_int;
+            trcks.aim += parameter_int;
         }
     }
 
     input.close();
 
-    std::cout << "Position: \n\tVertical: " << pos.vertical << "\n\tHorizontal: " << pos.horizontal << "\n\n";
-    std::cout << "Multiplication fof Horizontal and Vertical: " << pos.horizontal * pos.vertical << '\n';
+    std::cout << "Position: \n\tVertical: " << trcks.pos.vertical << "\n\tHorizontal: " << trcks.pos.horizontal << "\n\n";
+    std::cout << "Multiplication fof Horizontal and Vertical: " << trcks.pos.horizontal * trcks.pos.vertical << '\n';
 
     return 0;
 }
