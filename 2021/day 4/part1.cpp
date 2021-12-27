@@ -139,17 +139,6 @@ int main() {
                 }
             }
 
-
-
-            for(unsigned short x = 0; x < boards[board_num].numbers.size(); ++x) {
-                for(unsigned short y = 0; y < boards[board_num].numbers[x].size(); ++y) {
-                    std::cout << boards[board_num].marked_nums[x][y] << ' ';
-                }
-                std::cout << '\n';
-            }
-            std::cout << "\n\n";
-
-
             if(check_board(boards[board_num])) {
                 // the actual board is the winner-Board
                 winner_board = & boards[board_num];
@@ -169,19 +158,6 @@ int main() {
     }
     winner_board_score = sum_unmarked_nums * last_called_number;
     std::cout << "Winner-Board-Score: " << winner_board_score << '\n';
-
-    for(unsigned short x = 0; x < winner_board->numbers.size(); ++x) {
-        for(unsigned short y = 0; y < winner_board->numbers[y].size(); ++y) {
-            if(winner_board->marked_nums[x][y] == false) {
-                std::cout << winner_board->numbers[x][y] << "  ";
-            }
-            else {
-                std::cout << "  ";
-            }
-
-        }
-        std::cout << '\n';
-    }
 
     return 0;
 }
