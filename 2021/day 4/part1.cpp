@@ -149,12 +149,6 @@ int main() {
             }
             std::cout << "\n\n";
 
-            if(r_num == 64) {
-                if(board_num == 41) {
-                    std::cout << '\n';
-                }
-            }
-
 
             if(check_board(boards[board_num])) {
                 // the actual board is the winner-Board
