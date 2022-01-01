@@ -4,6 +4,9 @@
 #include <stdlib.h> // abs()
 #include <vector>
 
+// for board and point-printing
+//#define DEBUG
+
 struct Point
 {
     unsigned short x, y;
