@@ -1,8 +1,6 @@
 import os
 import sys
 
-os.system("clear")
-
 
 input_data = str()
 with open("part1 - input.txt") as input:
