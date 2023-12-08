@@ -137,6 +137,18 @@ class Game:
         
         return ret
 
+    def minSetForGame(self) -> Set:
+        ret:Set = Set()
+        for set in self.sets:
+            if set.red > ret.red:
+                ret.red = set.red
+            if set.green > ret.green:
+                ret.green = set.green
+            if set.blue > ret.blue:
+                ret.blue = set.blue
+        
+        return ret
+
     def __str__(self) -> str:
         ret:str =  f"Game: ID:{self.id} -> "
         for set in self.sets:
@@ -199,10 +211,9 @@ if __name__ == "__main__":
         games.append(Game(game))
 
     sum:int = 0
-    compare_set:Set = Set(14, 12, 13)
 
     for game in games:
-        if game <= compare_set:
-            sum += game.id
+        min_set = game.minSetForGame()
+        sum += min_set.red * min_set.green * min_set.blue
     
     print(f"Sum: {sum}")
